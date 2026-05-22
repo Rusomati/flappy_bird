@@ -43,6 +43,14 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
             current_x = p_x + i
             draw_px('|' , current_x , y)
 
+def test_pipe():
+    global canvas
+    global width
+    global height
+    clear_canvas()
+    draw_pipe(canvas, {'x': 12, 'y': 3, 'gap_height': 2, 'width': 4}, width, height)
+    show()
+
 def draw_bird(x, y):
     global canvas
     for v_off, line in enumerate(bird_image):
