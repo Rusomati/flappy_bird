@@ -30,6 +30,10 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     gap_y =pipe['y']
     gap_h = pipe['gap_height']
     p_w = pipe['width']
+    for y in range (1 , gap_y):
+        for i in [0 , p_w - 1]:
+            current_x = p_x + i
+            draw_px('|' , current_x , y)
     for y in [gap_y , gap_y + gap_h - 1]:
         for i in range(p_w):
             current_x = p_x + i
