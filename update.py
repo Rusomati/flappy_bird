@@ -19,11 +19,12 @@ def very_basic_height_testing():
     while True:
         pipes.clear()
         generate_pipe()
-        draw.test_pipe(12, update.pipes[0]['y'])
-        print(f'\t\t\theight: {update.pipes[0]['y']}')
+        draw.test_pipe(12, pipes[0]['y'])
+        print(f'\t\t\theight: {pipes[0]['y']}')
         input()
 
 def delete_first_pipe():
     for i in range(len(pipes)-1):
         pipes[i] = pipes[i+1]
-        pipes.pop()
+
+    pipes.pop()
