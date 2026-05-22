@@ -6,7 +6,10 @@ import draw
 
 def update():
     #update bird and pipes, and..
-    ...
+    for pipe in pipes:
+        pipe['x'] -= scroll_speed
+
+    bird_velocity += bird_acceleration
 
 #in theory can use a biased distribution for far-ness
 def generate_pipe():
