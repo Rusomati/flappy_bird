@@ -15,7 +15,7 @@ def clear_canvas():
     global debug_fill
     global width
     global height
-    canvas = [list(debug_fill * width)] * height
+    canvas = [list(debug_fill * width) for i in range(height)]
 
 def draw_px(ch, x, y):
     is_inside = 0 <= x < width and 0 <= y < height
