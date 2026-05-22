@@ -25,6 +25,20 @@ def draw_px(ch, x, y):
 
     return is_inside
 
+def draw_pipe(canvas , pipe , canvas_width , canvas_height):
+    p_x = pipe ['x']
+    gap_y =pipe['y']
+    gap_h = pipe['gap_height']
+    p_w = pipe['width']
+    for y in [gap_y , gap_y + gap_h - 1]:
+        for i in range(p_w):
+            current_x = p_x + i
+            draw_px('-' , current_x , y)
+    for y in range(gap_y + gap_h , canvas_height):
+        for i in [0 , p_w - 1]:
+            current_x = p_x + i
+            draw_px('|' , current_x , y)
+
 def draw_bird(x, y):
     global canvas
     for v_off, line in enumerate(bird_image):
