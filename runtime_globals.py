@@ -1,5 +1,8 @@
+score = 0
+high_score = None
+
 canvas = []
-pipe_list = []
+pipes = []
 
 bird_y = None
 bird_velocity = 0.0

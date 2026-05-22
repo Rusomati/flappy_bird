@@ -3,7 +3,7 @@ from time import sleep
 from settings import *
 from get_input import get_last_ch
 
-# TODO?
+# args, get high score?
 def initialise():
     ...
 

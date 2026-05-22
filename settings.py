@@ -11,3 +11,6 @@ bird_jump_gain = 3
 bird_image=str_to_image("""
 @>
 """)
+
+pipe_width = 6
+gap_height = 6
