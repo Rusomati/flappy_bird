@@ -1,6 +1,6 @@
 from utils import str_to_image
 
-width = 32
+width = 64
 height = round((width*9/16)/2)
 
 frame_rate = 20
