@@ -1,8 +1,6 @@
-# Flappy Bird Game (Python) 🐦
+# Flappy Bird Game (Python)
 
-A simple implementation of the classic **Flappy Bird** game built using Python.
+* a python project we are meant to finish...
 
-## Features
-* **Random Pipes:** Obstacles are generated at random heights.
-* **Score Counter:** Keeps track of your current score as you pass the pipes.
-* **Simple Controls:** Press the `Spacebar` to flap and fly.
+* note at 22/5: i ask my friend reading this to see 
+[the refactor recommendation](https://github.com/Rusomati/flappy_bird/blob/main/refactor_recommendation.md)
