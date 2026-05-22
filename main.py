@@ -1,12 +1,16 @@
 from time import sleep
-
+import runtime_globals
 from settings import *
 from get_input import get_last_ch
 
 # args, get high score?
 def initialise():
     ...
-
+    
+def increase_score():
+    runtime_globals.score += 1
+    return runtime_globals.score
+    
 def main_loop():
     while True:
         update()
