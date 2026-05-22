@@ -2,7 +2,7 @@ from runtime_globals import *
 from utils import str_to_image, copy_image
 from settings import *
 
-debug_fill = '*'
+debug_fill = ' '
 
 def draw_frame():
     clear_canvas()
