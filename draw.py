@@ -76,6 +76,7 @@ def test_pipe(x, y):
 
 def draw_bird(x, y):
     global canvas
+    y = round(y)
     for v_off, line in enumerate(bird_image):
         for h_off, px in enumerate(line):
             draw_px(px, x+h_off, y+v_off)
