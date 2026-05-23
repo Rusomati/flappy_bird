@@ -10,6 +10,9 @@ def update():
         pipe['x'] -= scroll_speed
 
     bird_velocity += bird_acceleration
+    
+def increase_score():
+    runtime_globals.score += 1
 
 #in theory can use a biased distribution for far-ness
 def generate_pipe():
