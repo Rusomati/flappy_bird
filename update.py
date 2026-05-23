@@ -16,8 +16,8 @@ def increase_score():
     pipe_x = pipe['x']
     pipe_w = pipe['width']
     for pipe in pipes :
-        if bird_x > (pipe_w + pipe_x) and not pipe['passed'] : #bird_w
-            global score #
+        if bird_x > (pipe_w + pipe_x) and not pipe['passed'] : 
+            global score 
             score += 1
             pipe['passed'] = True
 
