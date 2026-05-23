@@ -19,7 +19,7 @@ def generate_pipe():
     pipes.append({'x':width + randrange(1, width),
                   'y':randrange(1, height - gap_height),
                   'gap_height': gap_height,
-                  'width': pipe_width})
+                  'width': pipe_width , 'passed' : False })
 
 def very_basic_height_testing():
     while True:
