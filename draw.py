@@ -55,7 +55,7 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     p_w = pipe['width']
     total_pixels = 0
     drawn_pixels = 0
-    for y in range (1 , gap_y):
+    for y in range (0 , gap_y):
         for i in [0 , p_w - 1]:
             current_x = p_x + i
             total_pixels += 1
@@ -67,7 +67,7 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
                 total_pixels += 1
                 if draw_px('-' , current_x , y):
                     drawn_pixels += 1
-    for y in range(gap_y + gap_h , canvas_height - 1):
+    for y in range(gap_y + gap_h , canvas_height ):
         for i in [0 , p_w - 1]:
             current_x = p_x + i
             total_pixels += 1
