@@ -1,5 +1,5 @@
 from time import sleep
-import runtime_globals
+
 from settings import *
 from get_input import get_last_ch
 
@@ -7,9 +7,6 @@ from get_input import get_last_ch
 def initialise():
     ...
     
-def increase_score():
-    runtime_globals.score += 1
-    return runtime_globals.score
     
 def main_loop():
     while True:
