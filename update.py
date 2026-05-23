@@ -12,11 +12,11 @@ def update():
     bird_velocity += bird_acceleration
     
 def increase_score():
-    bird_x = bird[x]
-    pipe_x = pipe[x]
-    pipe_w = pipe[width]
+    bird_x = bird['x']
+    pipe_x = pipe['x']
+    pipe_w = pipe['width']
     for pipe in pipes :
-        if bird_x > (bird_w + pipe_x) and not pipe[passed] :
+        if bird_x > (bird_w + pipe_x) and not pipe['passed'] :
             runtime_globals.score += 1
             pipe['passed'] = True
 
