@@ -104,6 +104,6 @@ def test_draw_bird(x, y):
     show()
 
 def show():
-    scores = [list(f'score: {runtime_globals.score}\thigh score: {runtime_globals.high_score}')]
+    scores = [list(f'\x1b[Hscore: {runtime_globals.score}\thigh score: {runtime_globals.high_score}')]
     border = [['*'] * width] 
     print(*map(lambda line: ''.join(line), scores+border+canvas+border), sep='\n', flush=True)
