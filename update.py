@@ -11,8 +11,6 @@ def update():
     runtime_globals.bird_y += runtime_globals.bird_velocity
     runtime_globals.bird_velocity -= settings.bird_acceleration
 
-    print(runtime_globals.bird_velocity)
-
     increase_score()
 
 def increase_score():

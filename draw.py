@@ -11,10 +11,7 @@ def draw_frame():
     clear_canvas()
     draw_pipes()
     draw_bird(bird_x, runtime_globals.bird_y)
-    print(f'score: {runtime_globals.score}\thigh score: {runtime_globals.high_score}')
-    print('*' * width)
     show()
-    print('*' * width)
 
 def clear_canvas():
     global debug_fill
@@ -107,5 +104,6 @@ def test_draw_bird(x, y):
     show()
 
 def show():
-    for line in canvas:
-        print(''.join(line))
+    scores = [list(f'score: {runtime_globals.score}\thigh score: {runtime_globals.high_score}')]
+    border = [['*'] * width] 
+    print(*map(lambda line: ''.join(line), scores+border+canvas+border), sep='\n')
