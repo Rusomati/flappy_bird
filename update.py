@@ -9,7 +9,9 @@ def update():
         pipe['x'] -= settings.scroll_speed
 
     runtime_globals.bird_y += runtime_globals.bird_velocity
-    runtime_globals.bird_velocity += settings.bird_acceleration
+    runtime_globals.bird_velocity -= settings.bird_acceleration
+
+    print(runtime_globals.bird_velocity)
 
     increase_score()
 
@@ -42,7 +44,7 @@ def generate_pipe():
     if len(runtime_globals.pipes) == 0:
         p_x = settings.width - 1
     else:
-        p_x = settings.width + random.randrange(1, settings.width)
+        p_x = settings.width + random.randrange(settings.minimum_cross_pipe_distance, settings.width)
 
     runtime_globals.pipes.append({'x': p_x,
                   'y': random.randrange(1, settings.height - settings.gap_height),

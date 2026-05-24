@@ -16,7 +16,7 @@ def main_loop():
         update.update()
 
         if get_input.get_last_ch() == ' ':
-            runtime_globals.bird_velocity += settings.bird_jump_gain
+            runtime_globals.bird_velocity = -settings.bird_jump_gain
 
         # can improve..
         time.sleep(1/settings.frame_rate)
