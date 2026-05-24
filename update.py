@@ -1,56 +1,53 @@
-from random import randrange
-from settings import *
+import random
+
+import settings
 import runtime_globals
-#TODO: fix the testing mess ?
 import draw
 
 def update():
-    # update bird and pipes, and..
-    global scroll_speed
-    
     for pipe in runtime_globals.pipes:
-        pipe['x'] -= scroll_speed
+        pipe['x'] -= settings.scroll_speed
 
-    runtime_globals.bird_velocity += bird_acceleration
+    runtime_globals.bird_y += runtime_globals.bird_velocity
+    runtime_globals.bird_velocity += settings.bird_acceleration
 
     increase_score()
 
 def increase_score():
-    global bird_x 
-    
     for pipe in runtime_globals.pipes:
-        if bird_x >= (pipe['width'] + pipe['x']) and not pipe['passed']: 
+        if settings.bird_x >= (pipe['width'] + pipe['x']) and not pipe['passed']: 
             runtime_globals.score += 1
             pipe['passed'] = True
 
 # uhhhh + CURRENTLY MUST IMPORT DRAW BEFORE UPDATE
 def score_test():
-    global bird_x
-
     runtime_globals.pipes.clear()
     generate_pipe()
 
     while True:
         increase_score()
         draw.draw_frame()
-        print(f'{bird_x=}, {runtime_globals.pipes[0]['x']=}')
+        print(f'{settings.bird_x=}, {runtime_globals.pipes[0]['x']=}')
 
         shift = -int(input('insert the amount of shifting you want to perform: '))
         for pipe in runtime_globals.pipes:
             pipe['x'] += shift
 
         # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
-        runtime_globals.pipes[0]['x'] = min(runtime_globals.pipes[0]['x'], width - 1)
+        runtime_globals.pipes[0]['x'] = min(runtime_globals.pipes[0]['x'], settings.width - 1)
 
 #in theory can use a biased distribution for far-ness
 def generate_pipe():
     # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
-    p_x = width - 1 if len(runtime_globals.pipes) == 0 else width + randrange(1, width)
+    if len(runtime_globals.pipes) == 0:
+        p_x = settings.width - 1
+    else:
+        p_x = settings.width + random.randrange(1, settings.width)
 
     runtime_globals.pipes.append({'x': p_x,
-                  'y':randrange(1, height - gap_height),
-                  'gap_height': gap_height,
-                  'width': pipe_width , 'passed' : False })
+                  'y': random.randrange(1, settings.height - settings.gap_height),
+                  'gap_height': settings.gap_height,
+                  'width': settings.pipe_width , 'passed' : False })
 
 def very_basic_height_testing():
     while True:

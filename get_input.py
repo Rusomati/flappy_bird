@@ -1,3 +1,6 @@
+# this module currently breaks init and deinit semantics in main
+# but imports are top-level so, init kinda has to be coupled, what about de-init?
+
 import time
 import termios
 import atexit
