@@ -2,7 +2,6 @@
 # but imports are top-level so, init kinda has to be coupled, what about de-init?
 
 import time
-import termios
 import atexit
 
 is_unix = False
@@ -23,6 +22,7 @@ except Exception: # we are probably not in windows if an exception was raised
     old_term_state = setcbreak(stdin_fd) # cbreak mode allows the program to terminate with ctrl-c for example
                                          # while also allowing us to read input before enter is pressed
 
+    import termios
     atexit.register(clean_up, old_term_state) # reset terminal when the program ends
 
     from sys import stdin # for stdin.read
