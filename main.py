@@ -1,23 +1,25 @@
 from time import sleep
 
-from settings import *
-from get_input import get_last_ch
+from get_input import get_last_ch #..
+import settings
+import runtime_globals
+import update
 
-# args, get high score?
-def initialise():
-    ...
-    
+# TODO: args, get high score?
+def initialize():
+    update.generate_pipe() 
     
 def main_loop():
     while True:
-        update()
-        draw_and_collide()
+        draw.draw_frame()
+        update.update()
 
         if get_last_char() == ' ':
-            bird_velocity += bird_jump_gain
+            runtime_globals.bird_velocity += settings.bird_jump_gain
 
-        sleep(1/frame_rate)
+        # can improve..
+        sleep(1/settings.frame_rate)
 
 if __name__ == '__main__':
-    initialise()
+    initialize()
     main_loop()

@@ -1,8 +1,9 @@
+import settings
+
 score = 0
 high_score = None
 
-canvas = []
 pipes = []
 
-bird_y = None
+bird_y = settings.height / 2
 bird_velocity = 0.0
