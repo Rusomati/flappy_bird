@@ -15,7 +15,7 @@ def main_loop():
         draw.draw_frame()
         update.update()
 
-        if get_input.get_last_ch() == ' ':
+        if game_io.get_last_ch() == ' ':
             runtime_globals.bird_velocity = -settings.bird_jump_gain
 
         # can improve..
