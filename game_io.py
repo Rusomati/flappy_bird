@@ -7,10 +7,22 @@ import atexit
 is_unix = False
 
 def clean_up(old_term_state):
-    if is_unix:
-        termios.tcsetattr(stdin_fd, termios.TCSAFLUSH, old_term_state)
+    termios.tcsetattr(stdin_fd, termios.TCSAFLUSH, old_term_state)
 try:
     import msvcrt # a windows-only built-in module
+
+    import ctypes
+    # Get handles to stdout and the kernel32 DLL
+    kernel32 = ctypes.windll.kernel32
+    handle = kernel32.GetStdHandle(-11)  # -11 is standard output (stdout)
+
+    # Get the current console mode flags
+    mode = ctypes.c_ulong()
+    kernel32.GetConsoleMode(handle, ctypes.byref(mode))
+
+    # Flip the bit for ENABLE_VIRTUAL_TERMINAL_PROCESSING (0x0004)
+    kernel32.SetConsoleMode(handle, mode.value | 0x0004)
+
 except Exception: # we are probably not in windows if an exception was raised
     is_unix = True
     stdin_fd = 0 # 0 stands for the standard input file descriptor

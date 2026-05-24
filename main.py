@@ -4,7 +4,7 @@ import settings
 import runtime_globals
 import draw
 import update
-import get_input
+import game_io
 
 # TODO: args, get high score?
 def initialize():
