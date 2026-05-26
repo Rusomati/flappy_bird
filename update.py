@@ -135,7 +135,10 @@ def generate_pipe():
     else:
         delta_x = round((approx_min_pipe_x_off(p_y - runtime_globals.pipes[-1]['y']) + 1) \
                 * settings.min_pipe_distance_slack_factor)
-        p_x = settings.width + random.randint(delta_x, round(delta_x * settings.max_to_min_pipe_distance_factor))
+
+        # min is used to clamp the distance, if distance is too big pipe will be freed before its used
+        p_x = settings.width + random.randint(delta_x,\
+            min(settings.width - 1,round(delta_x * settings.max_to_min_pipe_distance_factor)))
 
     runtime_globals.pipes.append({'x': p_x,
                                   'y': p_y,
