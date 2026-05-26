@@ -16,8 +16,7 @@ bird_image=str_to_image("""
 @>
 """)
 
-# can get by a formula related to accel and scroll speed?
-# can make non static and can derive it in update() or smth?
-minimum_cross_pipe_distance = 14
+min_pipe_distance_slack_factor = 1.1
+max_to_min_pipe_distance_factor = 2.0
 pipe_width = 6
 gap_height = 6

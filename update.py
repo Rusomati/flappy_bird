@@ -1,3 +1,4 @@
+import math
 import random
 import os
 
@@ -29,7 +30,6 @@ def increase_score():
     for pipe in runtime_globals.pipes:
         if settings.bird_x >= (pipe['width'] + pipe['x']) and not pipe['passed']: 
             runtime_globals.score += 1
-            #TODO rem? runtime_globals.high_score = max(runtime_globals.score, runtime_globals.high_score)
             pipe['passed'] = True
 
 # why not in main, it runs once
@@ -81,18 +81,65 @@ def score_test():
         # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
         runtime_globals.pipes[0]['x'] = min(runtime_globals.pipes[0]['x'], settings.width - 1)
 
-#in theory can use a biased distribution for far-ness
+# point-wise approximation
+def approx_min_pipe_x_off(delta_y):
+    """
+    delta_y = y(t)
+    scroll_x = delta_x / t => t = delta_x / scroll_x
+    this function aims to calculate a fitting delta_x
+
+    (first branch)
+    when delta_y is negative y(t) = jumpgain * t
+    this is because the next pipe is higher, so you are capped by jump speed
+    jumping in this game resets velocity and acceleration can be ignored if you spam jump
+
+    delta_y = jumpgain * delta_x / scroll_x
+    delta_y * scroll_x / jumpgain = delta_x
+    delta_x = delta_y * scroll_x / jumpgain
+    (we flip relevant signs in code)
+
+    (second branch)
+    when delta_y is positive y(t) = sum(v(i)) from i=0 to i=t)
+    v(i) = a * i
+    y(t) = integral(a*t) with respect to t
+    y(t) = a * t**2 / 2
+
+    another formulation:
+    y(t) = sum(a*i from i=0 to i=t) = a * sum(i from i=0 to i=t)
+    substituting the triangle number formula:
+    y(t) = a * t * (t + 1) / 2
+    when t is big enough, it would become fairly close to t+1
+    y(t) = a * t * t / 2
+    y(t) = a * t**2 / 2
+
+    delta_y = a * (delta_x / scroll_x)**2 / 2
+    2 * delta_y / a = delta_x ** 2 / scroll_x ** 2
+    2 * scroll_x ** 2 * delta_y / a = delta_x ** 2
+    sqrt(2 * scroll_x**2 * delta_y / a) = delta_x
+    delta_x = sqrt(2 * delta_y / a) * scroll_x
+
+    (we flip relevant signs in code)
+    """
+    if delta_y < 0:
+        return -delta_y * (settings.scroll_speed / settings.bird_jump_gain)
+    else:
+        return math.sqrt(2 * delta_y / -settings.bird_acceleration) * settings.scroll_speed
+
 def generate_pipe():
+    p_y = random.randrange(1, settings.height - settings.gap_height)
+
     # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
     if len(runtime_globals.pipes) == 0:
         p_x = settings.width - 1
     else:
-        p_x = settings.width + random.randrange(settings.minimum_cross_pipe_distance, settings.width)
+        delta_x = round((approx_min_pipe_x_off(p_y - runtime_globals.pipes[-1]['y']) + 1) \
+                * settings.min_pipe_distance_slack_factor)
+        p_x = settings.width + random.randint(delta_x, round(delta_x * settings.max_to_min_pipe_distance_factor))
 
     runtime_globals.pipes.append({'x': p_x,
-                  'y': random.randrange(1, settings.height - settings.gap_height),
-                  'gap_height': settings.gap_height,
-                  'width': settings.pipe_width , 'passed' : False })
+                                  'y': p_y,
+                                  'gap_height': settings.gap_height,
+                                  'width': settings.pipe_width , 'passed' : False })
 
 def very_basic_height_testing():
     while True:
