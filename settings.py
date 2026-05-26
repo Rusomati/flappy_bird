@@ -1,5 +1,7 @@
 from utils import str_to_image
 
+debug = False
+
 width = 64
 height = round((width*9/16)/2)
 

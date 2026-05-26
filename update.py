@@ -1,35 +1,49 @@
 import random
 import os
+
 import settings
 import runtime_globals
 import draw
 
 def update():
+    did_collide = check_collision({'y': runtime_globals.bird_y})
+    
+    increase_score()
+
+    runtime_globals.high_score = update_high_score(runtime_globals.score, runtime_globals.high_score)
+
+    if not settings.debug:
+        move_pipes()
+
+        runtime_globals.bird_y += runtime_globals.bird_velocity
+ 
+        runtime_globals.bird_velocity -= settings.bird_acceleration
+
+    return not did_collide
+
+def move_pipes():
     for pipe in runtime_globals.pipes:
         pipe['x'] -= settings.scroll_speed
-
-    runtime_globals.bird_y += runtime_globals.bird_velocity
-    runtime_globals.bird_velocity -= settings.bird_acceleration
-
-    increase_score()
 
 def increase_score():
     for pipe in runtime_globals.pipes:
         if settings.bird_x >= (pipe['width'] + pipe['x']) and not pipe['passed']: 
             runtime_globals.score += 1
+            #TODO rem? runtime_globals.high_score = max(runtime_globals.score, runtime_globals.high_score)
             pipe['passed'] = True
-            
+
+# why not in main, it runs once
 def load_high_score():
     file_name = "highscore.txt"
     if not os.path.exists(file_name):
         with open(file_name , "w") as file :
             file.write("0")
             return 0
-        with open(file_name , "r") as file : 
-            try :
-                return int (file.read().strip())
-            except ValueError:
-                return 0
+    with open(file_name , "r") as file : 
+        try :
+            return int (file.read().strip())
+        except ValueError:
+            return 0
 
 def update_high_score(current_score , current_high_score):
     if current_score > current_high_score :
@@ -39,18 +53,18 @@ def update_high_score(current_score , current_high_score):
     return current_high_score    
                 
 def check_collision(bird  ):
-    bird_y = bird['y']
-    if bird_y <= 0 :
+    bird_y = round(bird['y']) # we use round() in draw_bird
+    if bird_y < 0 or bird_y >= settings.height:
         return True
     for pipe in runtime_globals.pipes :
         pipe_x = pipe['x']
         gap_y = pipe['y']
-        if settings.bird_x >= pipe_x and settings.bird_x < pipe_x + settings.pipe_width :
-            if bird_y < gap_y or bird_y >= (gap_y + settings.gap_height) :
+        if settings.bird_x + 1 >= pipe_x and settings.bird_x < pipe_x + settings.pipe_width:
+            if bird_y <= gap_y or bird_y >= (gap_y + settings.gap_height - 1) :
                 return True
     return False        
 
-# uhhhh + CURRENTLY MUST IMPORT DRAW BEFORE UPDATE
+# uhhhh + CURRENTLY (?) MUST IMPORT DRAW BEFORE UPDATE
 def score_test():
     runtime_globals.pipes.clear()
     generate_pipe()

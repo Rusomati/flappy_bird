@@ -6,8 +6,9 @@ import atexit
 
 is_unix = False
 
-def clean_up(old_term_state):
+def clean_unix(old_term_state):
     termios.tcsetattr(stdin_fd, termios.TCSAFLUSH, old_term_state)
+
 try:
     import msvcrt # a windows-only built-in module
 
@@ -35,7 +36,7 @@ except Exception: # we are probably not in windows if an exception was raised
                                          # while also allowing us to read input before enter is pressed
 
     import termios
-    atexit.register(clean_up, old_term_state) # reset terminal when the program ends
+    atexit.register(clean_unix, old_term_state) # reset terminal when the program ends
 
     from sys import stdin # for stdin.read
 
