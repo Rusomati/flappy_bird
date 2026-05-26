@@ -9,7 +9,7 @@ import atexit
 
 # TODO: args, get high score?
 def initialize():
-    print('\x1b[2J')
+    print('\x1b[2J') # clears the screen
     update.generate_pipe()
     runtime_globals.high_score = update.load_high_score()
 
@@ -20,9 +20,6 @@ def main_loop():
         should_run = update.update()
 
         key = game_io.get_last_ch()
-        if key == ' ':
-            runtime_globals.bird_velocity = -settings.bird_jump_gain
-
         if settings.debug:
             if key == 'w':
                 runtime_globals.bird_y -= 1
@@ -30,6 +27,9 @@ def main_loop():
                 runtime_globals.bird_y += 1
             if key == 'd':
                 update.move_pipes()
+        else:
+            if key == ' ':
+                runtime_globals.bird_velocity = -settings.bird_jump_gain
  
         # can improve..
         time.sleep(1/settings.frame_rate)
