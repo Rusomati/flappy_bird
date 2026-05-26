@@ -81,6 +81,7 @@ def score_test():
         # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
         runtime_globals.pipes[0]['x'] = min(runtime_globals.pipes[0]['x'], settings.width - 1)
 
+# NOT WRITTEN WITH THE HELP OF AI, ALSO WE FOUND THIS IDEA INDEPEDANTLY
 # point-wise approximation
 def approx_min_pipe_x_off(delta_y):
     """
