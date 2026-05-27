@@ -14,7 +14,6 @@ def draw_frame():
     show()
 
 def clear_canvas():
-    global debug_fill
     global width
     global height
     global canvas
