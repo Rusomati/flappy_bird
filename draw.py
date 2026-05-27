@@ -59,24 +59,31 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     p_w = pipe['width']
     total_pixels = 0
     drawn_pixels = 0
+
+    # draws the top pipe's vertical edges, in this implementation p_w is inclusive of the edges
     for y in range (0 , gap_y):
         for i in [0 , p_w - 1]:
             current_x = p_x + i
             total_pixels += 1
             if draw_px('|' , current_x , y):
                 drawn_pixels += 1
+
+    # draws the horizontal edges, in this implementation gap_h is inclusive of the edges
     for y in [gap_y , gap_y + gap_h - 1]:
-            for i in range(p_w):
-                current_x = p_x + i
-                total_pixels += 1
-                if draw_px('-' , current_x , y):
-                    drawn_pixels += 1
+        for i in range(p_w):
+            current_x = p_x + i
+            total_pixels += 1
+            if draw_px('-' , current_x , y):
+                drawn_pixels += 1
+
+    # draws the bottom pipe's vertical edges, in this implementation p_w is inclusive of the edges
     for y in range(gap_y + gap_h , canvas_height ):
         for i in [0 , p_w - 1]:
             current_x = p_x + i
             total_pixels += 1
             if draw_px('|' , current_x , y):
                 drawn_pixels += 1
+
     fully_inside = (drawn_pixels == total_pixels)        
     fully_outside = (drawn_pixels == 0)
     return (fully_inside , fully_outside)

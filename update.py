@@ -1,6 +1,5 @@
 import math
 import random
-import os
 
 import settings
 import runtime_globals
@@ -31,19 +30,6 @@ def increase_score():
         if settings.bird_x >= (pipe['width'] + pipe['x']) and not pipe['passed']: 
             runtime_globals.score += 1
             pipe['passed'] = True
-
-# why not in main, it runs once
-def load_high_score():
-    file_name = "highscore.txt"
-    if not os.path.exists(file_name):
-        with open(file_name , "w") as file :
-            file.write("0")
-            return 0
-    with open(file_name , "r") as file : 
-        try :
-            return int (file.read().strip())
-        except ValueError:
-            return 0
 
 def update_high_score(current_score , current_high_score):
     if current_score > current_high_score :
