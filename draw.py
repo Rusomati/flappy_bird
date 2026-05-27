@@ -14,8 +14,6 @@ def draw_frame():
     show()
 
 def clear_canvas():
-    global width
-    global height
     global canvas
     canvas.clear()
     canvas += [list(canvas_fill * width) for i in range(height)]
@@ -31,13 +29,6 @@ def draw_px(ch, x, y):
     return is_inside
 
 def draw_pipes():
-    global generate_pipe
-    global delete_first_pipe
-
-    global canvas
-    global width
-    global height
-    
     _, first_out = draw_pipe(canvas, runtime_globals.pipes[0], width, height)
 
     for pipe in sublist(runtime_globals.pipes, 1, 1):
@@ -91,16 +82,11 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     return (fully_inside , fully_outside)
 
 def test_pipe(x, y):
-    global canvas
-    global width
-    global height
-
     clear_canvas()
     draw_pipe(canvas, {'x': x, 'y': y, 'gap_height': gap_height, 'width': pipe_width}, width, height)
     show()
 
 def draw_bird(x, y):
-    global canvas
     y = round(y)
     for v_off, line in enumerate(bird_image):
         for h_off, px in enumerate(line):
