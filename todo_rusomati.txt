@@ -3,6 +3,13 @@ and whatnot(hidden ref syndrome??????????)?
 
 document with google slides (academic life be like fr fr (is that even readable english))
 
+abuse lambda with key dicts?
+
+find a place for set
+
+see other todos?
+
+
 make a test-less, debug-less branch???
 
 make your own branch later? if so, you may want to do:
