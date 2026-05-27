@@ -3,7 +3,7 @@ import runtime_globals
 from settings import *
 from update import *
 
-debug_fill = ' '
+canvas_fill = ' '
 
 canvas = []
 
@@ -19,7 +19,7 @@ def clear_canvas():
     global height
     global canvas
     canvas.clear()
-    canvas += [list(debug_fill * width) for i in range(height)]
+    canvas += [list(canvas_fill * width) for i in range(height)]
 
 def draw_px(ch, x, y):
     global canvas
@@ -52,6 +52,9 @@ def draw_pipes():
     if last_in:
         generate_pipe()
 
+# idea: make a detailed docstring that takes basically every ambiguous variable?
+# draws a pipe and returns whether the pipe is fully inside the canvas and whether it is fully outside it
+# those returns are used to track relevant head pipes, and generate tail pipes
 def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     p_x = pipe ['x']
     gap_y =pipe['y']
@@ -60,7 +63,7 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     total_pixels = 0
     drawn_pixels = 0
 
-    # draws the top pipe's vertical edges, in this implementation p_w is inclusive of the edges
+    # draws the top pipe's vertical edges row by row, in this implementation p_w is inclusive of the edges
     for y in range (0 , gap_y):
         for i in [0 , p_w - 1]:
             current_x = p_x + i
@@ -68,7 +71,7 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
             if draw_px('|' , current_x , y):
                 drawn_pixels += 1
 
-    # draws the horizontal edges, in this implementation gap_h is inclusive of the edges
+    # draws the horizontal edges column by column, in this implementation gap_h is inclusive of the edges
     for y in [gap_y , gap_y + gap_h - 1]:
         for i in range(p_w):
             current_x = p_x + i
@@ -76,7 +79,7 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
             if draw_px('-' , current_x , y):
                 drawn_pixels += 1
 
-    # draws the bottom pipe's vertical edges, in this implementation p_w is inclusive of the edges
+    # draws the bottom pipe's vertical edges row by row, in this implementation p_w is inclusive of the edges
     for y in range(gap_y + gap_h , canvas_height ):
         for i in [0 , p_w - 1]:
             current_x = p_x + i
