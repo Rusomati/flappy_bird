@@ -114,4 +114,4 @@ def show():
     scores_str = f'\x1b[Hscore: {runtime_globals.score}\thigh score: {runtime_globals.high_score}'
     canvas_str = '\n'.join(''.join(line) for line in canvas)
     border_str = '*' * width
-    print('\n'.join([scores_str, border_str, canvas_str, border_str]), flush=True)
+    print('\n'.join([scores_str, border_str, canvas_str, border_str]), flush=True) # flush=True?

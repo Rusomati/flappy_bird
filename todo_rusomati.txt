@@ -1,0 +1,12 @@
+potentially fix 'wildcard imports', may start by commenting out the imports and seeing what i am to do with 'global'
+and whatnot(hidden ref syndrome??????????)?
+
+document with google slides (academic life be like fr fr (is that even readable english))
+
+make a test-less, debug-less branch???
+
+make your own branch later? if so, you may want to do:
+saner pipe-freeing than what i had devised
++ sliding pointer state machine (on gen and delete events for O(1) score checking)
++ draw_px based bird collision
++ more?
