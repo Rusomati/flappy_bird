@@ -31,17 +31,7 @@ def main_loop():
         draw.draw_frame()
         should_run = update.update()
 
-        key = game_io.get_last_ch()
-        if settings.debug:
-            if key == 'w':
-                runtime_globals.bird_y -= 1
-            if key == 's':
-                runtime_globals.bird_y += 1
-            if key == 'd':
-                update.move_pipes()
-        else:
-            if key == ' ':
-                runtime_globals.bird_velocity = -settings.bird_jump_gain
+        game_io.process_last_keypress()
  
         # can improve..
         time.sleep(1/settings.frame_rate)

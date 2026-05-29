@@ -4,6 +4,8 @@
 import time
 import atexit
 
+import settings
+
 is_unix = False
 
 def clean_unix(old_term_state):
@@ -51,6 +53,13 @@ def get_last_ch():
         while msvcrt.kbhit(): # runs until there are no characters to get
             res = msvcrt.getwch()
         return res
+
+def process_ch(ch):
+    if ch in settings.key_actions:
+        key_actions[ch]()
+
+def process_last_keypress():
+    process_ch(get_last_ch())
 
 #while True:
 #    last_ch = get_last_ch() or 'nothing'
