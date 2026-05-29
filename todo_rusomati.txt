@@ -5,10 +5,11 @@ document with google slides (academic life be like fr fr (is that even readable 
 
 abuse lambda with key dicts?
 
-find a place for set
+find a place for set(???)
+
+making stars outside the canvas is buggy (top/bottom collision inconsistancy) (my ideas are sometimes stupid ig?)
 
 see other todos?
-
 
 make a test-less, debug-less branch???
 
