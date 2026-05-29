@@ -10,7 +10,7 @@ scroll_speed = 1
 bird_x = width // 4
 bird_acceleration = -0.02
 bird_jump_velocity = 0.3
-bird_image = [list('@>')]
+bird_image = [list('O>')]
 
 min_pipe_distance_slack_factor = 1.1
 max_to_min_pipe_distance_factor = 2.0
