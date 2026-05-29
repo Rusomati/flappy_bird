@@ -30,7 +30,6 @@ def main_loop():
     while should_run:
         draw.draw_frame()
         should_run = update.update()
-
         game_io.process_last_keypress()
  
         # can improve..
