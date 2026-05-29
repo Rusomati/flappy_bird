@@ -50,6 +50,7 @@ def check_collision(bird  ):
     return False        
 
 # superceeded by debug mode
+"""
 def test_score():
     runtime_globals.pipes.clear()
     generate_pipe()
@@ -67,6 +68,7 @@ def test_score():
 
         # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
         runtime_globals.pipes[0]['x'] = min(runtime_globals.pipes[0]['x'], settings.width - 1)
+"""
 
 # NOT WRITTEN WITH THE HELP OF AI, ALSO WE FOUND THIS IDEA INDEPEDANTLY
 # point-wise approximation
@@ -109,12 +111,14 @@ def generate_pipe():
 
         # min is used to clamp the distance, if distance is too big pipe will be freed before its used
         p_x = settings.width + random.randint(delta_x,\
-            min(settings.width - 1,round(delta_x * settings.max_to_min_pipe_distance_factor)))
+            min(settings.width - 1, round(delta_x * settings.max_to_min_pipe_distance_factor)))
 
     runtime_globals.pipes.append({'x': p_x,
                                   'y': p_y,
                                   'passed' : False })
 
+# i deem this unnecessary, you can simply test the edge cases?
+"""
 def very_basic_height_testing():
     while True:
         runtime_globals.pipes.clear()
@@ -122,6 +126,7 @@ def very_basic_height_testing():
         draw.test_pipe(12, runtime_globals.pipes[0]['y'])
         print(f'\t\t\theight: {runtime_globals.pipes[0]['y']}')
         input()
+"""
 
 def delete_first_pipe():
     for i in range(len(runtime_globals.pipes)-1):

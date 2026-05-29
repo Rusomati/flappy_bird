@@ -34,7 +34,7 @@ def draw_px(ch, x, y):
 def draw_pipes():
     _, first_out = draw_pipe(canvas, runtime_globals.pipes[0], settings.width, settings.height)
 
-    for pipe in utils.sublist_iterator(runtime_globals.pipes, 1, 1):
+    for pipe in utils.sublist_iterator(runtime_globals.pipes, 1, len(runtime_globals.pipes) - 1):
         draw_pipe(canvas, pipe, settings.width, settings.height)
 
     last_in, _ = draw_pipe(canvas, runtime_globals.pipes[-1], settings.width, settings.height)
