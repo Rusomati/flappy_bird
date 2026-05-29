@@ -50,7 +50,6 @@ def check_collision(bird  ):
     return False        
 
 # superceeded by debug mode
-"""
 def test_score():
     runtime_globals.pipes.clear()
     generate_pipe()
@@ -68,7 +67,6 @@ def test_score():
 
         # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
         runtime_globals.pipes[0]['x'] = min(runtime_globals.pipes[0]['x'], settings.width - 1)
-"""
 
 # NOT WRITTEN WITH THE HELP OF AI, ALSO WE FOUND THIS IDEA INDEPEDANTLY
 # point-wise approximation
@@ -100,7 +98,7 @@ def approx_min_pipe_x_off(delta_y):
     return round(estimated_time * settings.scroll_speed)
 
 def generate_pipe():
-    p_y = random.randrange(1, settings.height - settings.gap_height)
+    p_y = random.randrange(1, settings.height - settings.gap_height - 1)
 
     # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
     if len(runtime_globals.pipes) == 0:
