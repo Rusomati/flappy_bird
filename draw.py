@@ -87,8 +87,9 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
 def test_draw_pipe(x, y):
     clear_terminal()
     clear_canvas()
-    draw_pipe(canvas, {'x': x, 'y': y}, settings.width, settings.height)
+    res = draw_pipe(canvas, {'x': x, 'y': y}, settings.width, settings.height)
     show()
+    return res
 
 def draw_bird(x, y):
     y = round(y)
