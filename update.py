@@ -78,6 +78,9 @@ def approx_min_pipe_x_off(delta_y):
     if delta_y < 0:
         # yv = dy/dt
         # dt = dy/yv
+        # acceleration doesnt count as jumping resets acceleration, if you spam jump acceleration basically ceases
+        # and spamming jump is expected if you want to go up as soon as possible, which is expected given
+        # how we want the minimum time to reach the pipe
         estimated_time = -delta_y / settings.bird_jump_velocity
     else:
         # y = sum(velocity(i), from i=0 to i=t) | integral(v(i)*di, from i=0 to i=t)
