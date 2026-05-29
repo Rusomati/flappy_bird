@@ -7,10 +7,6 @@ import draw
 
 def update():
     did_collide = check_collision({'y': runtime_globals.bird_y})
-    
-    increase_score()
-
-    runtime_globals.high_score = update_high_score(runtime_globals.score, runtime_globals.high_score)
 
     if not settings.debug:
         move_pipes()
@@ -18,6 +14,9 @@ def update():
         runtime_globals.bird_y += runtime_globals.bird_velocity
  
         runtime_globals.bird_velocity -= settings.bird_acceleration
+ 
+    increase_score()
+    runtime_globals.high_score = update_high_score(runtime_globals.score, runtime_globals.high_score)
 
     return not did_collide
 
