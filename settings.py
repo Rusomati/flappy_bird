@@ -9,7 +9,7 @@ scroll_speed = 1
 
 bird_x = width // 4
 bird_acceleration = -0.02
-bird_jump_gain = 0.3
+bird_jump_velocity = 0.3
 bird_image = [list('@>')]
 
 min_pipe_distance_slack_factor = 1.1
@@ -30,6 +30,6 @@ debug_key_actions = {
 
 def set_bird_vel(v): runtime_globals.bird_velocity = v
 
-normal_key_actions = {' ': lambda: set_bird_vel(-bird_jump_gain)}
+normal_key_actions = {' ': lambda: set_bird_vel(-bird_jump_velocity)}
 
 key_actions = debug_key_actions if debug else normal_key_actions

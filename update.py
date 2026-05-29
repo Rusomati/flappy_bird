@@ -108,7 +108,7 @@ def approx_min_pipe_x_off(delta_y):
     (we flip relevant signs in code)
     """
     if delta_y < 0:
-        return -delta_y * (settings.scroll_speed / settings.bird_jump_gain)
+        return -delta_y * (settings.scroll_speed / settings.bird_jump_velocity)
     else:
         return math.sqrt(2 * delta_y / -settings.bird_acceleration) * settings.scroll_speed
 
