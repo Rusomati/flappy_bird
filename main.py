@@ -5,7 +5,7 @@ import settings
 import runtime_globals
 import draw
 import update
-import key_manager
+import io_init_and_kb
 
 def load_high_score():
     file_name = "highscore.txt"
@@ -30,16 +30,16 @@ def main_loop():
     while should_run:
         draw.draw_frame()
         should_run = update.update()
-        key_manager.process_last_keypress()
+        io_init_and_kb.process_last_keypress()
  
         # can improve..
         time.sleep(1/settings.frame_rate)
 
 def show_game_over_screen():
     #draw.draw_frame()
-    key_manager.get_last_ch()
+    io_init_and_kb.get_last_ch()
     print('game over, press any key to exit')
-    while not key_manager.get_last_ch(): time.sleep(1/settings.frame_rate)
+    while not io_init_and_kb.get_last_ch(): time.sleep(1/settings.frame_rate)
 
 if __name__ == '__main__':
     initialize()
