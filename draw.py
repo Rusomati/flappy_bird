@@ -1,6 +1,6 @@
-from utils import str_to_image, copy_image, sublist
 import runtime_globals
 import update
+import utils
 from settings import *
 
 canvas_fill = ' '
@@ -31,7 +31,7 @@ def draw_px(ch, x, y):
 def draw_pipes():
     _, first_out = draw_pipe(canvas, runtime_globals.pipes[0], width, height)
 
-    for pipe in sublist(runtime_globals.pipes, 1, 1):
+    for pipe in utils.sublist_iterator(runtime_globals.pipes, 1, 1):
         draw_pipe(canvas, pipe, width, height)
 
     last_in, _ = draw_pipe(canvas, runtime_globals.pipes[-1], width, height)
