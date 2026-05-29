@@ -7,6 +7,9 @@ canvas_fill = ' '
 
 canvas = []
 
+def clear_terminal():
+    print('\x1b[2J')
+
 def draw_frame():
     clear_canvas()
     draw_pipes()
@@ -81,7 +84,8 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     fully_outside = (drawn_pixels == 0)
     return (fully_inside , fully_outside)
 
-def test_pipe(x, y):
+def test_draw_pipe(x, y):
+    clear_terminal()
     clear_canvas()
     draw_pipe(canvas, {'x': x, 'y': y}, settings.width, settings.height)
     show()

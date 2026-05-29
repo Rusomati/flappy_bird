@@ -21,7 +21,7 @@ def load_high_score():
 
 # TODO: args, get high score?
 def initialize():
-    print('\x1b[2J') # clears the screen
+    draw.clear_terminal()
     update.generate_pipe()
     runtime_globals.high_score = load_high_score()
 
