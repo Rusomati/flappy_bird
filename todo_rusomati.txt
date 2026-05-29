@@ -1,7 +1,3 @@
-document with google slides (academic life be like fr fr (is that even readable english))
-
-find a place for set(???)
-
 making stars outside the canvas is buggy (top/bottom collision inconsistancy) (my ideas are sometimes stupid ig?)
 
 see other todos?
