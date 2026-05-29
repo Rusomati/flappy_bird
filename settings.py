@@ -22,6 +22,10 @@ import update
 
 def shift_bird_y(sh): runtime_globals.bird_y += sh
 
+# k: get_hook(key)(based on settings or smth) seems to be rather intruiging
+# k: get..k ? there seems the be a layer of oversophistication
+# but a defense may lie in 'optimization', pre-settings hooks instead of always resolving ??
+
 debug_key_actions = {
         'w' : lambda: shift_bird_y(-1), # apparently, i can not assign in a lambda
         's' : lambda: shift_bird_y(1),
