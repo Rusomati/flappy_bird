@@ -1,7 +1,7 @@
 from utils import str_to_image, copy_image, sublist
 import runtime_globals
+import update
 from settings import *
-from update import *
 
 canvas_fill = ' '
 
@@ -37,10 +37,10 @@ def draw_pipes():
     last_in, _ = draw_pipe(canvas, runtime_globals.pipes[-1], width, height)
 
     if first_out:
-        delete_first_pipe()
+        update.delete_first_pipe()
 
     if last_in:
-        generate_pipe()
+        update.generate_pipe()
 
 # idea: make a detailed docstring that takes basically every ambiguous variable?
 # draws a pipe and returns whether the pipe is fully inside the canvas and whether it is fully outside it

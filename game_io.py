@@ -56,7 +56,7 @@ def get_last_ch():
 
 def process_ch(ch):
     if ch in settings.key_actions:
-        key_actions[ch]()
+        settings.key_actions[ch]()
 
 def process_last_keypress():
     process_ch(get_last_ch())
