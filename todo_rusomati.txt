@@ -1,6 +1,3 @@
-potentially fix 'wildcard imports', may start by commenting out the imports and seeing what i am to do with 'global'
-and whatnot(hidden ref syndrome??????????)?
-
 document with google slides (academic life be like fr fr (is that even readable english))
 
 find a place for set(???)

@@ -1,7 +1,7 @@
 import runtime_globals
 import update
 import utils
-from settings import *
+import settings
 
 canvas_fill = ' '
 
@@ -10,18 +10,18 @@ canvas = []
 def draw_frame():
     clear_canvas()
     draw_pipes()
-    draw_bird(bird_x, runtime_globals.bird_y)
+    draw_bird(settings.bird_x, runtime_globals.bird_y)
     show()
 
 def clear_canvas():
     global canvas
     canvas.clear()
-    canvas += [list(canvas_fill * width) for i in range(height)]
+    canvas += [list(canvas_fill * settings.width) for i in range(settings.height)]
 
 def draw_px(ch, x, y):
     global canvas
 
-    is_inside = 0 <= x < width and 0 <= y < height
+    is_inside = 0 <= x < settings.width and 0 <= y < settings.height
 
     if is_inside:
         canvas[y][x] = ch
@@ -29,12 +29,12 @@ def draw_px(ch, x, y):
     return is_inside
 
 def draw_pipes():
-    _, first_out = draw_pipe(canvas, runtime_globals.pipes[0], width, height)
+    _, first_out = draw_pipe(canvas, runtime_globals.pipes[0], settings.width, settings.height)
 
     for pipe in utils.sublist_iterator(runtime_globals.pipes, 1, 1):
-        draw_pipe(canvas, pipe, width, height)
+        draw_pipe(canvas, pipe, settings.width, settings.height)
 
-    last_in, _ = draw_pipe(canvas, runtime_globals.pipes[-1], width, height)
+    last_in, _ = draw_pipe(canvas, runtime_globals.pipes[-1], settings.width, settings.height)
 
     if first_out:
         update.delete_first_pipe()
@@ -48,8 +48,8 @@ def draw_pipes():
 def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     p_x = pipe ['x']
     gap_y =pipe['y']
-    gap_h = pipe['gap_height']
-    p_w = pipe['width']
+    gap_h = settings.gap_height
+    p_w = settings.pipe_width
     total_pixels = 0
     drawn_pixels = 0
 
@@ -83,14 +83,14 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
 
 def test_pipe(x, y):
     clear_canvas()
-    draw_pipe(canvas, {'x': x, 'y': y, 'gap_height': gap_height, 'width': pipe_width}, width, height)
+    draw_pipe(canvas, {'x': x, 'y': y}, settings.width, settings.height)
     show()
 
 def draw_bird(x, y):
     y = round(y)
-    for v_off, line in enumerate(bird_image):
+    for v_off, line in enumerate(settings.bird_image):
         for h_off, px in enumerate(line):
-            draw_px(px, bird_x+h_off, y+v_off)
+            draw_px(px, settings.bird_x+h_off, y+v_off)
 
 # ugly at best..
 def test_draw_bird(x, y):
@@ -101,5 +101,5 @@ def test_draw_bird(x, y):
 def show():
     scores_str = f'\x1b[Hscore: {runtime_globals.score}\thigh score: {runtime_globals.high_score}'
     canvas_str = '\n'.join(''.join(line) for line in canvas)
-    border_str = '*' * width
+    border_str = '*' * settings.width
     print('\n'.join([scores_str, border_str, canvas_str, border_str]), flush=True) # flush=True?

@@ -27,7 +27,7 @@ def move_pipes():
 
 def increase_score():
     for pipe in runtime_globals.pipes:
-        if settings.bird_x >= (pipe['width'] + pipe['x']) and not pipe['passed']: 
+        if settings.bird_x >= (settings.pipe_width + pipe['x']) and not pipe['passed']: 
             runtime_globals.score += 1
             pipe['passed'] = True
 
@@ -128,8 +128,7 @@ def generate_pipe():
 
     runtime_globals.pipes.append({'x': p_x,
                                   'y': p_y,
-                                  'gap_height': settings.gap_height,
-                                  'width': settings.pipe_width , 'passed' : False })
+                                  'passed' : False })
 
 def very_basic_height_testing():
     while True:
