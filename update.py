@@ -49,13 +49,16 @@ def check_collision(bird  ):
                 return True
     return False        
 
-# uhhhh + CURRENTLY (?) MUST IMPORT DRAW BEFORE UPDATE
-def score_test():
+# superceeded by debug mode
+"""
+def test_score():
     runtime_globals.pipes.clear()
     generate_pipe()
 
     while True:
         increase_score()
+
+        draw.clear_terminal()
         draw.draw_frame()
         print(f'{settings.bird_x=}, {runtime_globals.pipes[0]['x']=}')
 
@@ -65,6 +68,7 @@ def score_test():
 
         # first pipe should be in scope else it will be deleted next frame for being outside the canvas...
         runtime_globals.pipes[0]['x'] = min(runtime_globals.pipes[0]['x'], settings.width - 1)
+"""
 
 # NOT WRITTEN WITH THE HELP OF AI, ALSO WE FOUND THIS IDEA INDEPEDANTLY
 # point-wise approximation
