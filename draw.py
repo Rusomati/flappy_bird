@@ -95,10 +95,11 @@ def draw_bird(x, y):
     y = round(y)
     for v_off, line in enumerate(settings.bird_image):
         for h_off, px in enumerate(line):
-            draw_px(px, settings.bird_x+h_off, y+v_off)
+            draw_px(px, x+h_off, y+v_off)
 
 # ugly at best..
 def test_draw_bird(x, y):
+    clear_terminal()
     clear_canvas()
     draw_bird(x, y)
     show()
