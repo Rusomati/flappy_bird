@@ -73,47 +73,28 @@ def test_score():
 # NOT WRITTEN WITH THE HELP OF AI, ALSO WE FOUND THIS IDEA INDEPEDANTLY
 # point-wise approximation
 def approx_min_pipe_x_off(delta_y):
-    """
-    delta_y = y(t)
-    scroll_x = delta_x / t => t = delta_x / scroll_x
-    this function aims to calculate a fitting delta_x
+    estimated_time = None
 
-    (first branch)
-    when delta_y is negative y(t) = jumpgain * t
-    this is because the next pipe is higher, so you are capped by jump speed
-    jumping in this game resets velocity and acceleration can be ignored if you spam jump
-
-    delta_y = jumpgain * delta_x / scroll_x
-    delta_y * scroll_x / jumpgain = delta_x
-    delta_x = delta_y * scroll_x / jumpgain
-    (we flip relevant signs in code)
-
-    (second branch)
-    when delta_y is positive y(t) = sum(v(i)) from i=0 to i=t)
-    v(i) = a * i
-    y(t) = integral(a*t) with respect to t
-    y(t) = a * t**2 / 2
-
-    another formulation:
-    y(t) = sum(a*i from i=0 to i=t) = a * sum(i from i=0 to i=t)
-    substituting the triangle number formula:
-    y(t) = a * t * (t + 1) / 2
-    when t is big enough, it would become fairly close to t+1
-    y(t) = a * t * t / 2
-    y(t) = a * t**2 / 2
-
-    delta_y = a * (delta_x / scroll_x)**2 / 2
-    2 * delta_y / a = delta_x ** 2 / scroll_x ** 2
-    2 * scroll_x ** 2 * delta_y / a = delta_x ** 2
-    sqrt(2 * scroll_x**2 * delta_y / a) = delta_x
-    delta_x = sqrt(2 * delta_y / a) * scroll_x
-
-    (we flip relevant signs in code)
-    """
     if delta_y < 0:
-        return -delta_y * (settings.scroll_speed / settings.bird_jump_velocity)
+        # yv = dy/dt
+        # dt = dy/yv
+        estimated_time = -delta_y / settings.bird_jump_velocity
     else:
-        return math.sqrt(2 * delta_y / -settings.bird_acceleration) * settings.scroll_speed
+        # y = sum(velocity(i), from i=0 to i=t) | integral(v(i)*di, from i=0 to i=t)
+        # velocity(i) = acceleration * i
+        # y = sum(acceleration * i, from i=0 to i=t) | integral(acceleration * i * di, from i=0 to i=t)
+        # y = acceleration * sum(i, from i=0 to i=t) | acceleration * t**2 / 2 - 0
+        # (triangle number formula)
+        # y = `acceleration * t * (t+1) / 2` close to `acceleration * t * t / 2` | ...
+        # y = acceleration * t**2 / 2 | acceleration * t**2 / 2
+        # y = acceleration * t**2 / 2
+        # 2 * y / acceleration = t**2
+        # t = sqrt(2 * y / acceleration)
+        estimated_time = math.sqrt(2 * delta_y / -settings.bird_acceleration)
+
+    # vx = dx/dt
+    # dx = vx*dt
+    return round(estimated_time * settings.scroll_speed)
 
 def generate_pipe():
     p_y = random.randrange(1, settings.height - settings.gap_height)
