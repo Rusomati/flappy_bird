@@ -56,7 +56,7 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
     total_pixels = 0
     drawn_pixels = 0
 
-    # draws the top pipe's vertical edges row by row, top to bpttom, in this implementation p_w is inclusive of the edges
+    # draws the top pipe's vertical edges row by row, top to bottom, in this implementation p_w is inclusive of the edges
     for y in range (0 , gap_y):
         for i in [0 , p_w - 1]:
             current_x = p_x + i
@@ -64,7 +64,7 @@ def draw_pipe(canvas , pipe , canvas_width , canvas_height):
             if draw_px('|' , current_x , y):
                 drawn_pixels += 1
 
-    # draws the top hoizontal edge, then the bottom one, both column by colum and left to right
+    # draws the top horizontal edge, then the bottom one, both column by column and left to right
     for y in [gap_y , gap_y + gap_h - 1]:
         for i in range(p_w):
             current_x = p_x + i
