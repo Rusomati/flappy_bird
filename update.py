@@ -129,7 +129,4 @@ def very_basic_height_testing():
 """
 
 def delete_first_pipe():
-    for i in range(len(runtime_globals.pipes)-1):
-        runtime_globals.pipes[i] = runtime_globals.pipes[i+1]
-
-    runtime_globals.pipes.pop()
+    del runtime_globals.pipes[0]
